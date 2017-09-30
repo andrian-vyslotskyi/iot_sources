@@ -23,6 +23,7 @@ class Config:
     def moisture_pin(self):
         pass
 
+
 class DummyConfig(Config):
     def temperature_pin(self):
         return 13
@@ -36,4 +37,4 @@ class DummyConfig(Config):
     def moisture_pin(self):
         return 22
 
-#TODO: add properties, distributed configs
+ # TODO: add properties, distributed configs

@@ -25,17 +25,17 @@ class Handler:
 
 class ConsoleHandler(Handler):
     def handle_temperature(self, timestamp, temperature, humidity):
-        print '{0:15f}\t{1:3d}\t{2:3d}'.format(timestamp, temperature, humidity)
+        print 'T&H: {0:15f}\t{1:3d}C\t{2:3d}%'.format(timestamp, temperature, humidity)
         pass
 
     def handle_light(self, timestamp, is_light):
-        print '{0:15f}\t{1}'.format(timestamp, is_light)
+        print 'Light: {0:15f}\t{1}'.format(timestamp, is_light)
         pass
 
     def handle_water(self, timestamp):
-        print '{0:15f}'.format(timestamp)
+        print 'Water: {0:15f}'.format(timestamp)
         pass
 
     def handle_soil(self, timestamp, is_wet):
-        print '{0:15f}\t{1}'.format(timestamp, is_wet)
+        print 'Wet: {0:15f}\t{1}'.format(timestamp, is_wet)
         pass
