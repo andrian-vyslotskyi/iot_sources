@@ -31,9 +31,9 @@ class DummyConfig(Config):
         return 15
 
     def rain_pin(self):
-        return 11
+        return 8
 
     def moisture_pin(self):
-        pass
+        return 22
 
 #TODO: add properties, distributed configs

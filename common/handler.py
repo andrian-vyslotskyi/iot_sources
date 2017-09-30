@@ -19,6 +19,9 @@ class Handler:
     def handle_water(self, timestamp):
         pass
 
+    @abstractmethod
+    def handle_soil(self, timestamp, is_wet):
+        pass
 
 class ConsoleHandler(Handler):
     def handle_temperature(self, timestamp, temperature, humidity):
@@ -31,4 +34,8 @@ class ConsoleHandler(Handler):
 
     def handle_water(self, timestamp):
         print '{0:15f}'.format(timestamp)
+        pass
+
+    def handle_soil(self, timestamp, is_wet):
+        print '{0:15f}\t{1}'.format(timestamp, is_wet)
         pass

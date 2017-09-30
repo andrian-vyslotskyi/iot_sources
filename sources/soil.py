@@ -1,5 +1,5 @@
-import time
 import ASUS.GPIO as GPIO
+import time
 from common.configs import DummyConfig
 from common.handler import ConsoleHandler
 
@@ -9,17 +9,17 @@ GPIO.setwarnings(False)
 config = DummyConfig()
 handler = ConsoleHandler()
 
-pin = config.rain_pin()
+pin = config.moisture_pin()
 
 
-def water_detected(pin):
-    if GPIO.input(pin) == GPIO.LOW:
-        handler.handle_water(time.time())
+def moisture_changed(pin):
+    is_wet = GPIO.input(pin) == GPIO.LOW
+    handler.handle_soil(time.time(), is_wet)
 
 
 GPIO.setup(pin, GPIO.IN)
-GPIO.add_event_detect(pin, GPIO.BOTH, callback=water_detected, bouncetime=500)
+GPIO.add_event_detect(pin, GPIO.BOTH, callback=moisture_changed, bouncetime=200)
 
 # cycle to keep main process alive
 while True:
-    time.sleep(1000)
+    time.sleep(100)

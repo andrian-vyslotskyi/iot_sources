@@ -19,4 +19,4 @@ while True:
     if result.is_valid():
         ts = time.time()  # in seconds
         handler.handle_temperature(ts, result.temperature, result.humidity)
-    time.sleep(15)  # 1/4 of minute
+    time.sleep(1)  # 1 s
