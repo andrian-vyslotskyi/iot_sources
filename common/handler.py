@@ -15,6 +15,10 @@ class Handler:
     def handle_light(self, timestamp, is_light):
         pass
 
+    @abstractmethod
+    def handle_water(self, timestamp):
+        pass
+
 
 class ConsoleHandler(Handler):
     def handle_temperature(self, timestamp, temperature, humidity):
@@ -23,4 +27,8 @@ class ConsoleHandler(Handler):
 
     def handle_light(self, timestamp, is_light):
         print '{0:15f}\t{1}'.format(timestamp, is_light)
+        pass
+
+    def handle_water(self, timestamp):
+        print '{0:15f}'.format(timestamp)
         pass

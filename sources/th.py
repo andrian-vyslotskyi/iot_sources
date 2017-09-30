@@ -12,12 +12,11 @@ handler = ConsoleHandler()
 
 pin = config.temperature_pin()
 
+GPIO.setup(pin, GPIO.IN)
 sensor = dht11.DHT11(pin, GPIO)
 while True:
     result = sensor.read()
     if result.is_valid():
-        ts = time.time() #in seconds
+        ts = time.time()  # in seconds
         handler.handle_temperature(ts, result.temperature, result.humidity)
-    else: 
-        print result.error_code
-    time.sleep(60) #1 minute
+    time.sleep(15)  # 1/4 of minute

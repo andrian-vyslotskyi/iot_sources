@@ -31,7 +31,7 @@ class DummyConfig(Config):
         return 15
 
     def rain_pin(self):
-        pass
+        return 11
 
     def moisture_pin(self):
         pass
