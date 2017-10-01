@@ -13,8 +13,8 @@ pin = config.rain_pin()
 
 
 def water_detected(pin):
-    if GPIO.input(pin) == GPIO.LOW:
-        handler.handle_water(time.time())
+    is_water = GPIO.input(pin) == GPIO.LOW
+    handler.handle_water(time.time(), is_water)
 
 
 GPIO.setup(pin, GPIO.IN)
