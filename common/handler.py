@@ -26,7 +26,8 @@ class Handler:
 
 class ConsoleHandler(Handler):
     def handle_temperature(self, timestamp, temperature, humidity):
-        print 'T&H: {0:15f}\t{1:3d}C\t{2:3d}%'.format(timestamp, temperature, humidity)
+        print 'Temperature: {0:15f}\t{1:3d}C'.format(timestamp, temperature)
+        print 'Humidity: {0:15f}\t{1:3d}%'.format(timestamp, humidity)
         pass
 
     def handle_light(self, timestamp, is_light):

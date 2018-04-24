@@ -1,0 +1,49 @@
+version: '2'
+services:
+  zookeeper:
+    image: zookeeper
+    volumes:
+      - ./zk/data:/data
+      - ./zk/datalog:/datalog
+    ports:
+      - "2181:2181"
+    restart: always
+
+  kafka1:
+    image: wurstmeister/kafka:latest #0.10.1.0
+    volumes:
+      - ./kafka/kafka1:/kafka
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: 192.168.0.100
+      KAFKA_ADVERTISED_PORT: 9092
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+
+  kafka2:
+    image: wurstmeister/kafka:latest #0.10.1.0
+    volumes:
+      - ./kafka/kafka2:/kafka
+    ports:
+      - "9093:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: 192.168.0.100
+      KAFKA_ADVERTISED_PORT: 9093
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+
+  kafka-manager:
+    image: intropro/kafka-manager:latest
+    ports:
+      - "9000:9000"
+    links:
+      - zookeeper
+      - kafka
+    depends_on:
+      - zookeeper
+      - kafka
+    environment:
+      ZK_HOSTS: zookeeper:2181
